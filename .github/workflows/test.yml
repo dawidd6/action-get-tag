@@ -11,8 +11,10 @@ jobs:
     - name: Run
       id: tag
       run: |
-        GITHUB_REF=refs/heads/master node ./main.js || true
+        GITHUB_REF=origin/refs/tag/v1 node ./main.js && exit 1 || true
+        GITHUB_REF=refs/tag/v1 node ./main.js && exit 1 || true
+        GITHUB_REF=refs/heads/master node ./main.js && exit 1 || true
         GITHUB_REF=refs/tags/v1.0.0 node ./main.js
     - name: Test
       run: |
-        test "v1.0.0" = ${{steps.tag.outputs.tag}}
+        test "v1.0.0" = "${{steps.tag.outputs.tag}}"
