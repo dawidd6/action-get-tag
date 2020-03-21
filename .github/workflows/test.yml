@@ -6,15 +6,24 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout
+    - name: Checkout code
       uses: actions/checkout@v2
-    - name: Run
-      id: tag
+    - name: Run dev
+      id: tag_dev
       run: |
-        GITHUB_REF=origin/refs/tag/v1 node ./main.js && exit 1 || true
-        GITHUB_REF=refs/tag/v1 node ./main.js && exit 1 || true
-        GITHUB_REF=refs/heads/master node ./main.js && exit 1 || true
-        GITHUB_REF=refs/tags/v1.0.0 node ./main.js
-    - name: Test
+        GITHUB_REF= node main.js && exit 1 || true
+        GITHUB_REF=origin/refs/tag/v1 node main.js && exit 1 || true
+        GITHUB_REF=refs/tag/v1 node main.js && exit 1 || true
+        GITHUB_REF=refs/heads/master node main.js && exit 1 || true
+        GITHUB_REF=refs/tags/v1.0.0 node main.js
+    - name: Test dev
       run: |
-        test "v1.0.0" = "${{steps.tag.outputs.tag}}"
+        test "v1.0.0" = "${{steps.tag_dev.outputs.tag}}"
+    - name: Run prod
+      id: tag_prod
+      if: startsWith(github.ref, 'refs/tags') == true
+      uses: ./
+    - name: Test prod
+      if: startsWith(github.ref, 'refs/tags') == true
+      run: |
+        test -n "${{steps.tag_prod.outputs.tag}}"
