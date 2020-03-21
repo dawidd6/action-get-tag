@@ -9,7 +9,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
     - name: Run
-      uses: ./
       id: tag
       run: |
         GITHUB_REF=refs/heads/master node ./main.js || true
