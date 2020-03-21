@@ -1,16 +1,13 @@
 const core = require("@actions/core")
 
-let cut = function(ref) {
-  if(ref.startsWith("refs/tags/")) {
-    return ref.replace(/^refs\/tags\//, "")
-  }
-  throw `Not a tag ref (${ref})`
-}
-
 async function main() {
   try {
     const ref = process.env.GITHUB_REF
-    const tag = cut(ref)
+    if(!ref)
+      throw "GITHUB_REF is not defined"
+    if(!ref.startsWith("refs/tags/"))
+      throw `Not a tag ref (${ref})`
+    const tag = ref.replace(/^refs\/tags\//, "")
 
     core.debug(`ref=${ref}`)
     core.debug(`tag=${tag}`)
