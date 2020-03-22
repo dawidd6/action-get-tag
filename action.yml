@@ -1,5 +1,5 @@
 name: Get tag
-description: Get tag from GITHUB_REF environment variable
+description: Get tag name from GITHUB_REF environment variable
 branding:
   icon: tag
   color: gray-dark
