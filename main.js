@@ -9,8 +9,8 @@ async function main() {
       throw `Not a tag ref (${ref})`
     const tag = ref.replace(/^refs\/tags\//, "")
 
-    core.debug(`ref=${ref}`)
-    core.debug(`tag=${tag}`)
+    core.info(`ref=${ref}`)
+    core.info(`tag=${tag}`)
 
     core.setOutput("tag", tag);
   }
