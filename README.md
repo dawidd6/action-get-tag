@@ -16,7 +16,7 @@ on:
 ```yaml
 - name: Get tag
   id: tag
-  uses: dawidd6/action-get-tag@master
+  uses: dawidd6/action-get-tag@v1
 - name: Use tag
   run: echo ${{steps.tag.outputs.tag}}
 ```
