@@ -3,6 +3,11 @@ description: Get tag name from GITHUB_REF environment variable
 branding:
   icon: tag
   color: gray-dark
+inputs:
+  strip_v:
+    required: false
+    default: false
+    description: wether to strip "v" from the tag or not
 outputs:
   tag:
     description: Git tag name

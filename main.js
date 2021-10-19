@@ -3,13 +3,14 @@ const core = require("@actions/core")
 async function main() {
   try {
     const ref = process.env.GITHUB_REF
+    const strip_v = process.env.INPUT_STRIP_V
     if(!ref)
       throw "GITHUB_REF is not defined"
     if(!ref.startsWith("refs/tags/"))
       throw `Not a tag ref (${ref})`
     let tag = ref.replace(/^refs\/tags\//, "")
     
-    if(tag.startsWith("v"))
+    if(strip_v === "true" && tag.startsWith("v"))
       tag = tag.replace(/v/, "")
 
 
