@@ -7,7 +7,11 @@ async function main() {
       throw "GITHUB_REF is not defined"
     if(!ref.startsWith("refs/tags/"))
       throw `Not a tag ref (${ref})`
-    const tag = ref.replace(/^refs\/tags\//, "")
+    let tag = ref.replace(/^refs\/tags\//, "")
+    
+    if(tag.startsWith("v"))
+      tag = tag.replace(/v/, "")
+
 
     core.info(`ref=${ref}`)
     core.info(`tag=${tag}`)
