@@ -17,6 +17,9 @@ on:
 - name: Get tag
   id: tag
   uses: dawidd6/action-get-tag@v1
+  with:
+    # Optionally strip `v` prefix
+    strip_v: true
 - name: Use tag
   run: echo ${{steps.tag.outputs.tag}}
 ```
