@@ -11,7 +11,7 @@ async function main() {
     let tag = ref.replace(/^refs\/tags\//, "")
     
     if(strip_v === "true" && tag.startsWith("v"))
-      tag = tag.replace(/v/, "")
+      tag = tag.replace(/^v/, "")
 
 
     core.info(`ref=${ref}`)

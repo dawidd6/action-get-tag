@@ -7,7 +7,7 @@ inputs:
   strip_v:
     required: false
     default: false
-    description: whether to strip "v" from the tag or not
+    description: Whether to strip "v" from the tag or not
 outputs:
   tag:
     description: Git tag name
