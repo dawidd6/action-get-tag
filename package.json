@@ -2,6 +2,6 @@
   "name": "action-get-tag",
   "main": "index.js",
   "dependencies": {
-    "@actions/core": "^1.2.7"
+    "@actions/core": "^1.9.1"
   }
 }
